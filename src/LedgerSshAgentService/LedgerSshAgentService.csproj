@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>ledger-ssh-agent</AssemblyName>
+    <TargetFramework>net7.0-windows10.0.17763</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\modules\dotnet-common\src\Common.Hosting\Common.Hosting.csproj" />
+    <ProjectReference Include="..\..\modules\dotnet-ledger-sshpgp-app\src\Ledger.App.SshPgp\Ledger.App.SshPgp.csproj" />
+    <ProjectReference Include="..\..\modules\dotnet-ledger\src\Ledger.Transport.WinBle\Ledger.Transport.WinBle.csproj" />
+    <ProjectReference Include="..\..\modules\dotnet-ledger\src\Ledger.Transport.Speculos\Ledger.Transport.Speculos.csproj" />
+    <ProjectReference Include="..\..\modules\dotnet-ledger\src\Ledger.Transport.Usb\Ledger.Transport.Usb.csproj" />
+    <ProjectReference Include="..\..\modules\dotnet-ledger\src\Ledger\Ledger.csproj" />
+    <ProjectReference Include="..\..\modules\dotnet-ssh-agent\src\SshAgent.Transport.Pipe\SshAgent.Transport.Pipe.csproj" />
+    <ProjectReference Include="..\..\modules\dotnet-ssh-agent\src\SshAgent\SshAgent.csproj" />
+    <ProjectReference Include="..\SshAgent.Ledger\SshAgent.Ledger.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="7.0.1" />
+    <PackageReference Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="ServiceBootstrap.*.cs">
+      <DependentUpon>ServiceBootstrap.cs</DependentUpon>
+    </Compile>
+    <None Update="config.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

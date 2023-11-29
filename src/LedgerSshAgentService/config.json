@@ -1,0 +1,39 @@
+{
+  "LedgerSpeculosOptions": {
+    "Enable": true,
+    "Host": "localhost",
+    "Port": 40000,
+    "DeviceId": "speculos"
+  },
+  "LedgerSshAgentOptions": {
+    "Keys": [
+      {
+        "KeyPath": "44'/535348'/0'",
+        "Key": "PUBLIC KEY BASE64",
+        "KeyCurve": "C25519"
+      },
+      {
+        "KeyPath": "44'/535348'/0'/0/0",
+        "Key": "PUBLIC KEY BASE64",
+        "KeyCurve": "P256V1"
+      }
+    ]
+  },
+  "Logging": {
+    "EventLog": {
+      "LogLevel": {
+        "Default": "Debug",
+        "Microsoft": "Warning",
+        "System": "Warning"
+      }
+    },
+    "LogLevel": {
+      "Default": "Debug",
+      "Microsoft": "Warning",
+      "System": "Warning"
+    }
+  },
+  "SshAgentPipeOptions": {
+    "PipeName": "ledger-ssh-agent"
+  }
+}
