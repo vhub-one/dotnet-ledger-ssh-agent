@@ -1,7 +1,9 @@
 using Common.Hosting.Configuration;
+using Common.Hosting.DependencyInjection;
 using LedgerSshAgentService.Commands.SshAgent;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using SshAgent;
 using SshAgent.Ledger;
 using SshAgent.Transport.Pipe;
@@ -22,17 +24,25 @@ namespace LedgerSshAgentService
         {
             hostBuilder.ConfigureServices((context, services) =>
             {
-                #region [LedgerSshAgent]
+                #region [SshAgent]
 
                 services.ConfigureByName<LedgerSshAgentOptions>();
-                services.AddSingleton<ISshAgent, LedgerSshAgent>();
+                services.ConfigureByName<PipeSshAgentOptions>();
+
+                services.AddSingleton<ISshAgent>(p =>
+                    new SshAgentAggregator(
+                        p.GetRequiredService<ILogger<SshAgentAggregator>>(),
+                        p.CreateService<LedgerSshAgent>(),
+                        p.CreateService<PipeSshAgent>()
+                    )
+                );
 
                 #endregion
 
                 #region [SshAgentService]
 
-                services.ConfigureByName<SshAgentPipeOptions>();
-                services.AddSingleton<ISshAgentConnectionFactory, SshAgentPipeConnectionFactory>();
+                services.ConfigureByName<PipeSshAgentConnectionFactoryOptions>();
+                services.AddSingleton<ISshAgentConnectionFactory, PipeSshAgentConnectionFactory>();
                 services.AddSingleton<SshAgentService>();
 
                 #endregion

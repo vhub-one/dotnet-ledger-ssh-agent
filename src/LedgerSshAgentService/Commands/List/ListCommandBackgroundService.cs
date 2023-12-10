@@ -41,7 +41,7 @@ namespace LedgerSshAgentService.Commands.List
 
             if (options == null)
             {
-                throw new InvalidOperationException("Configuration is missing");
+                throw new InvalidOperationException("Configuration for ListCommandBackgroundService is missing");
             }
 
             var ledgerDevices = _deviceEnumerator.GetDevicesAsync(token);

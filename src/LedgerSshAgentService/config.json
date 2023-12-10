@@ -1,10 +1,4 @@
 {
-  "LedgerSpeculosOptions": {
-    "Enable": true,
-    "Host": "localhost",
-    "Port": 40000,
-    "DeviceId": "speculos"
-  },
   "LedgerSshAgentOptions": {
     "Keys": [
       {
@@ -19,6 +13,18 @@
       }
     ]
   },
+  "LedgerSpeculosOptions": {
+    "Enable": true,
+    "Host": "localhost",
+    "Port": 40000,
+    "DeviceId": "speculos"
+  },
+  "PipeSshAgentConnectionFactoryOptions": {
+    "PipeName": "ledger-ssh-agent"
+  },
+  "PipeSshAgentOptions": {
+    "PipeName": "openssh-ssh-agent"
+  },
   "Logging": {
     "EventLog": {
       "LogLevel": {
@@ -32,8 +38,5 @@
       "Microsoft": "Warning",
       "System": "Warning"
     }
-  },
-  "SshAgentPipeOptions": {
-    "PipeName": "ledger-ssh-agent"
   }
 }
