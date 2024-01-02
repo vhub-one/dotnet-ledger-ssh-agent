@@ -9,14 +9,14 @@ using System.Buffers;
 
 namespace SshAgent.Ledger
 {
-    public class LedgerSshAgent : ISshAgent
+    public class LedgerSshAgentClient : ISshAgent
     {
-        private readonly IOptions<LedgerSshAgentOptions> _ledgerOptionsAccessor;
+        private readonly IOptions<LedgerSshAgentClientOptions> _ledgerOptionsAccessor;
         private readonly ILedgerDeviceEnumerator _ledgerEnumerator;
 
-        private readonly ILogger<LedgerSshAgent> _logger;
+        private readonly ILogger<LedgerSshAgentClient> _logger;
 
-        public LedgerSshAgent(IOptions<LedgerSshAgentOptions> ledgerOptionsAccessor, ILedgerDeviceEnumerator ledgerEnumerator, ILogger<LedgerSshAgent> logger)
+        public LedgerSshAgentClient(IOptions<LedgerSshAgentClientOptions> ledgerOptionsAccessor, ILedgerDeviceEnumerator ledgerEnumerator, ILogger<LedgerSshAgentClient> logger)
         {
             _ledgerOptionsAccessor = ledgerOptionsAccessor;
             _ledgerEnumerator = ledgerEnumerator;

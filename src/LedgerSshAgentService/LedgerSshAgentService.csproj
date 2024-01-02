@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <AssemblyName>ledger-ssh-agent</AssemblyName>
@@ -21,6 +21,7 @@
     <ProjectReference Include="$(ModulesPath)\dotnet-ledger-sshpgp-app\src\Ledger.App.SshPgp\Ledger.App.SshPgp.csproj" />
     <ProjectReference Include="$(ModulesPath)\dotnet-ssh-agent\src\SshAgent\SshAgent.csproj" />
     <ProjectReference Include="$(ModulesPath)\dotnet-ssh-agent\src\SshAgent.Transport.Pipe\SshAgent.Transport.Pipe.csproj" />
+    <ProjectReference Include="$(ModulesPath)\dotnet-ssh-agent\src\SshAgent.Transport.TcpSocket\SshAgent.Transport.TcpSocket.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,5 +1,5 @@
 ﻿using Common.Hosting.Configuration;
-using Common.Hosting.DependencyInjection;
+using Common.Hosting.ServiceProvider;
 using Ledger;
 using Ledger.Transport.Speculos;
 using Ledger.Transport.Usb;

@@ -1,12 +1,14 @@
 using Common.Hosting.Configuration;
-using Common.Hosting.DependencyInjection;
+using Common.Hosting.Service;
+using Common.Hosting.ServiceProvider;
 using LedgerSshAgentService.Commands.SshAgent;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using SshAgent;
 using SshAgent.Ledger;
+using SshAgent.Proxy;
 using SshAgent.Transport.Pipe;
+using SshAgent.Transport.TcpSocket;
 using System.CommandLine;
 
 namespace LedgerSshAgentService
@@ -26,23 +28,44 @@ namespace LedgerSshAgentService
             {
                 #region [SshAgent]
 
-                services.ConfigureByName<LedgerSshAgentOptions>();
-                services.ConfigureByName<PipeSshAgentOptions>();
+                services.ConfigureByName<PipeSshAgentClientOptions>();
+                services.ConfigureByName<LedgerSshAgentClientOptions>();
+                services.ConfigureByName<SocketSshAgentClientOptions>();
 
-                services.AddSingleton<ISshAgent>(p =>
-                    new SshAgentAggregator(
-                        p.GetRequiredService<ILogger<SshAgentAggregator>>(),
-                        p.CreateService<LedgerSshAgent>(),
-                        p.CreateService<PipeSshAgent>()
-                    )
-                );
+                services.AddSingleton(p =>
+                {
+                    var providers = new Dictionary<string, ISshAgent>
+                    {
+                        { "PipeSshAgentClient", p.CreateService<PipeSshAgentClient>() },
+                        { "LedgerSshAgentClient", p.CreateService<LedgerSshAgentClient>() },
+                        { "SocketSshAgentClient", p.CreateService<SocketSshAgentClient>() },
+                    };
+
+                    return ServiceMap.Create(providers);
+                });
+
+                services.ConfigureByName<SshAgentProxyOptions>();
+                services.AddSingleton<ISshAgent, SshAgentProxy>();
 
                 #endregion
 
                 #region [SshAgentService]
 
-                services.ConfigureByName<PipeSshAgentConnectionFactoryOptions>();
-                services.AddSingleton<ISshAgentConnectionFactory, PipeSshAgentConnectionFactory>();
+                services.ConfigureByName<PipeSshAgentHostConnectionFactoryOptions>();
+                services.ConfigureByName<SocketSshAgentHostConnectionFactoryOptions>();
+
+                services.AddSingleton(p => {
+
+                    var factories = new Dictionary<string, ISshAgentHostConnectionFactory>
+                    {
+                        { "PipeSshAgentHostConnectionFactory", p.CreateService<PipeSshAgentHostConnectionFactory>() },
+                        { "SocketSshAgentHostConnectionFactory", p.CreateService<SocketSshAgentHostConnectionFactory>() },
+                    };
+
+                    return ServiceMap.Create(factories);
+                });
+
+                services.AddSingleton<ISshAgentHostConnectionFactory, SshAgentConnectionFactoryProxy>();
                 services.AddSingleton<SshAgentService>();
 
                 #endregion

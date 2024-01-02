@@ -1,5 +1,6 @@
 {
-  "LedgerSshAgentOptions": {
+  /* OUTGOING CONNECTIONS */
+  "LedgerSshAgentClientOptions": {
     "Keys": [
       {
         "KeyPath": "44'/535348'/0'",
@@ -13,17 +14,34 @@
       }
     ]
   },
+  "PipeSshAgentClientOptions": {
+    "PipeName": "openssh-ssh-agent"
+  },
+  "SocketSshAgentClientOptions": {
+    "Host": "localhost",
+    "Port": 30022
+  },
+  "SshAgentProxyOptions": {
+    "SshAgentsOrder": [
+      "LedgerSshAgentClient",
+      "PipeSshAgentClient",
+      "SocketSshAgentClient"
+    ]
+  },
+  /* INCOMING CONNECTIONS */
+  "PipeSshAgentHostConnectionFactoryOptions": {
+    "PipeName": "ledger-ssh-agent"
+  },
+  "SocketSshAgentHostConnectionFactoryOptions": {
+    "Host": "localhost",
+    "Port": 33022
+  },
+  /* LEDGER DEVICES */
   "LedgerSpeculosOptions": {
-    "Enable": true,
+    "Enable": false,
     "Host": "localhost",
     "Port": 40000,
     "DeviceId": "speculos"
-  },
-  "PipeSshAgentConnectionFactoryOptions": {
-    "PipeName": "ledger-ssh-agent"
-  },
-  "PipeSshAgentOptions": {
-    "PipeName": "openssh-ssh-agent"
   },
   "Logging": {
     "EventLog": {

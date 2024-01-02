@@ -37,6 +37,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SshAgent.Transport.Pipe", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SshAgent.Ledger", "src\SshAgent.Ledger\SshAgent.Ledger.csproj", "{D8D6CB9E-4F5C-4D78-B4E1-D4A736088229}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SshAgent.Transport.TcpSocket", "modules\dotnet-ssh-agent\src\SshAgent.Transport.TcpSocket\SshAgent.Transport.TcpSocket.csproj", "{50E586E0-A403-4EDC-8E31-826738296086}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -91,6 +93,10 @@ Global
 		{D8D6CB9E-4F5C-4D78-B4E1-D4A736088229}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D8D6CB9E-4F5C-4D78-B4E1-D4A736088229}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D8D6CB9E-4F5C-4D78-B4E1-D4A736088229}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50E586E0-A403-4EDC-8E31-826738296086}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50E586E0-A403-4EDC-8E31-826738296086}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50E586E0-A403-4EDC-8E31-826738296086}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50E586E0-A403-4EDC-8E31-826738296086}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -108,6 +114,7 @@ Global
 		{37C032BD-C496-41E0-9843-BC47296F560D} = {42EE6669-7804-4E3C-A76E-20EC8CBA6657}
 		{C317F96E-8050-4B8D-A5D1-739542561BCB} = {42EE6669-7804-4E3C-A76E-20EC8CBA6657}
 		{D8D6CB9E-4F5C-4D78-B4E1-D4A736088229} = {42EE6669-7804-4E3C-A76E-20EC8CBA6657}
+		{50E586E0-A403-4EDC-8E31-826738296086} = {42EE6669-7804-4E3C-A76E-20EC8CBA6657}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F1888570-21BA-4F40-A407-697A5DD44A0C}
