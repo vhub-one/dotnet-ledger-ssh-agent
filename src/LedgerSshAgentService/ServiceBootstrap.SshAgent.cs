@@ -65,7 +65,9 @@ namespace LedgerSshAgentService
                     return ServiceMap.Create(factories);
                 });
 
+                services.ConfigureByName<SshAgentConnectionFactoryProxyOptions>();
                 services.AddSingleton<ISshAgentHostConnectionFactory, SshAgentConnectionFactoryProxy>();
+
                 services.AddSingleton<SshAgentService>();
 
                 #endregion

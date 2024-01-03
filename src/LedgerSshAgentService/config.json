@@ -36,6 +36,12 @@
     "Host": "localhost",
     "Port": 33022
   },
+  "SshAgentConnectionFactoryProxyOptions": {
+    "SshAgents": [
+      "SocketSshAgentHostConnectionFactory",
+      "PipeSshAgentHostConnectionFactory"
+    ]
+  },
   /* LEDGER DEVICES */
   "LedgerSpeculosOptions": {
     "Enable": false,
@@ -43,6 +49,7 @@
     "Port": 40000,
     "DeviceId": "speculos"
   },
+  /* LOGGING */
   "Logging": {
     "EventLog": {
       "LogLevel": {
